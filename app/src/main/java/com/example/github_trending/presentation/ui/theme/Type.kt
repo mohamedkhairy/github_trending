@@ -1,4 +1,4 @@
-package com.example.github_trending.ui.theme
+package com.example.github_trending.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

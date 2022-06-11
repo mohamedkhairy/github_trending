@@ -22,7 +22,7 @@ data class Item(
     @SerialName("description")
     val description: String,
     @SerialName("language")
-    val language: String,
+    val language: String?,
     @SerialName("owner")
     val owner: Owner,
     @SerialName("stargazers_count")

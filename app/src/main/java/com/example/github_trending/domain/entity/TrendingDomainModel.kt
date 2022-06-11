@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 
 data class TrendingDomainModel(
     val description: String,
-    val language: String,
+    val language: String?,
     val stargazersCount: Int,
     val avatarUrl: String,
     val ownerName: String,

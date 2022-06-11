@@ -12,7 +12,7 @@ data class TrendingEntity(
     @PrimaryKey
     val id: Int,
     val description: String,
-    val language: String,
+    val language: String?,
     @Embedded
     val owner: Owner,
     val stargazersCount: Int,
