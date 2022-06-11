@@ -2,8 +2,10 @@ package dependencies
 
 object Hilt {
     const val hiltVersion = "2.41"
-    const val android = "com.google.dagger:hilt-android:$hiltVersion"
-    const val compiler = "com.google.dagger:hilt-compiler:$hiltVersion"
+
+    val android by lazy { "com.google.dagger:hilt-android:$hiltVersion" }
+    val compiler by lazy { "com.google.dagger:hilt-compiler:$hiltVersion" }
+
 }
 
 //object HiltTest {
