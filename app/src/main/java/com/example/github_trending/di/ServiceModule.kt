@@ -8,7 +8,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
 import io.ktor.client.*
-import javax.inject.Singleton
 
 @Module
 @InstallIn(ViewModelComponent::class)

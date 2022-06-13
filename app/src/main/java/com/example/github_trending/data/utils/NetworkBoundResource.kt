@@ -12,8 +12,6 @@ inline fun <ResultType, RequestType> networkBoundResource(
     val data = query().firstOrNull()
 
     val flow = if (shouldFetch(data)) {
-//        emit(Resource.Loading(data))
-
         try {
             val fetch = fetchFromApi()
             saveFetchResult(fetch)

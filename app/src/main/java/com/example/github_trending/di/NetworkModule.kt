@@ -1,6 +1,5 @@
-package com.example.sary_app.di
+package com.example.github_trending.di
 
-import com.example.sary_app.network.Header
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,8 +9,6 @@ import io.ktor.client.engine.android.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
-import io.ktor.client.request.*
-import io.ktor.http.*
 import javax.inject.Singleton
 
 @Module
@@ -36,14 +33,4 @@ object NetworkModule {
             }
 
     }
-
-//    fun HttpRequestBuilder.apiUrl() {
-//        headers {
-//            append(Header.DEVICE_TYPE_KEY , Header.DeviceType)
-//            append(HttpHeaders.Authorization, Header.Authorization)
-//            append(Header.ACCEPT_LANGUAGE_KEY, Header.AcceptLanguage)
-//            append(Header.Platform , Header.Flagship)
-//            append(Header.APP_VERSION_KEY, Header.AppVersion)
-//        }
-//    }
 }

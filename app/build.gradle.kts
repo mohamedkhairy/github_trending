@@ -9,6 +9,7 @@ import dependencies.Kotlin
 import dependencies.Compose
 import dependencies.Coil
 import dependencies.Room
+import dependencies.Lottie
 
 
 
@@ -107,7 +108,7 @@ dependencies {
     implementation(Ktor.ktorJson)
     implementation(Ktor.logging)
 
-    implementation ("com.airbnb.android:lottie-compose:5.2.0")
+    implementation (Lottie.lottie)
 
 
     testImplementation("junit:junit:4.13.2")

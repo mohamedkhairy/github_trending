@@ -14,7 +14,6 @@ class TrendingGithubServiceImpl @Inject constructor(val httpClient: HttpClient):
 
     override suspend fun callTrendingGithub(): GitHubResponse {
         return httpClient.get<GitHubResponse> {
-//            this.apiUrl()
             url(EndPoints.TRENDING_URL)
         }
     }

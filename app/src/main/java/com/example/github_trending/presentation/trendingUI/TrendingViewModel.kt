@@ -1,6 +1,5 @@
 package com.example.github_trending.presentation.trendingUI
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -25,6 +24,12 @@ class TrendingViewModel @Inject constructor(private val trendingUseCase: Trendin
         getTrendingGithubList()
     }
 
+/**
+ * this method can emit 3 state to UI
+ * Loading -> when the app trying to get data
+ * Success -> when data return successfully
+ * Error -> will return old data if it's available or Error if not
+ * */
     fun getTrendingGithubList() {
         viewModelScope.launch(Dispatchers.Main) {
             trendingUseCase.invoke().collect {

@@ -15,6 +15,13 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
+/***
+ * this is an Implementation of TrendingRepository
+ * that can handling the API response and save it on the database.
+ *  it returns a List<TrendingDomainModel> to the domain layer
+ *
+ */
+
 class TrendingRepositoryImp @Inject constructor(val trendingGithubService: TrendingGithubService,
                                                 val githubTrendingDao: GithubTrendingDao,
                                                 val domainMapper: TrendingToDomainMapper,

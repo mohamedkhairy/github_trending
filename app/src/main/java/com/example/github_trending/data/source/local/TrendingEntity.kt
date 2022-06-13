@@ -3,8 +3,6 @@ package com.example.github_trending.data.source.local
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 
 
 @Entity(tableName = "trending_table")
