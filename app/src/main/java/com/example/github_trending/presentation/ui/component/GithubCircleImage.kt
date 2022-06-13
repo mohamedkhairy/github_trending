@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
+import coil.request.CachePolicy
 import coil.request.ImageRequest
 import coil.size.Size
 import coil.transform.CircleCropTransformation
@@ -23,9 +24,9 @@ import com.example.github_trending.R
 fun GithubCircleImage(imageUrl: String){
 
     val painter = rememberAsyncImagePainter(
-
         model = ImageRequest.Builder(LocalContext.current)
             .transformations(CircleCropTransformation())
+            .error(R.drawable.github_mark)
             .data(imageUrl)
             .size(300)
             .crossfade(true)
