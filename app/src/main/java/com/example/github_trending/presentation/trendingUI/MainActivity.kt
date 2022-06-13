@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.viewModels
 import com.example.github_trending.presentation.ui.component.GithubCardItem
+import com.example.github_trending.presentation.ui.component.TopBarView
 import com.example.github_trending.presentation.ui.shimmer.AnimatedShimmer
 import com.example.github_trending.presentation.ui.theme.GithubTrendingTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,43 +38,37 @@ class MainActivity : ComponentActivity() {
                 val trendingList = trendingViewModel.trendingList.value
                 val isLoading = trendingViewModel.loading.value
 
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                Box(
-                    modifier = Modifier.fillMaxSize()
+                Column( modifier = Modifier.fillMaxSize()) {
+                    TopBarView()
 
-                ) {
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colors.background
+                    ) {
 
-                    if (isLoading)
-                        Column {
-                            repeat(8) {
-                                AnimatedShimmer()
+                        Box(
+                            modifier = Modifier.fillMaxSize()
+
+                        ) {
+
+                            if (isLoading)
+                                Column {
+                                    repeat(8) {
+                                        AnimatedShimmer()
+                                    }
+                                }
+
+                            LazyColumn {
+                                itemsIndexed(items = trendingList) { index, item ->
+                                    GithubCardItem(data = item)
+                                }
                             }
-                        }
 
-                    LazyColumn {
-                        itemsIndexed(items = trendingList) { index, item ->
-                            GithubCardItem(data = item)
+
                         }
                     }
 
-
-                }}
-
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colors.background
-//                ) {
-//
-//                    Column {
-//                        repeat(8) {
-//                            AnimatedShimmer()
-//                        }
-//                    }
-//
-//                }
+                }
             }
         }
     }
