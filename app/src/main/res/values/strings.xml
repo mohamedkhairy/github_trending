@@ -2,5 +2,6 @@
     <string name="app_name">github_trending</string>
     <string name="circle_image_desc" >github image</string>
     <string name="trending" >Trending</string>
+    <string name="retry" >Retry</string>
 
 </resources>

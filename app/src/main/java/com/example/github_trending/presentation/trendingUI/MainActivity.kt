@@ -15,10 +15,15 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.viewModels
+import com.airbnb.lottie.compose.*
+import com.example.github_trending.R
+import com.example.github_trending.presentation.ui.component.ErrorView
 import com.example.github_trending.presentation.ui.component.GithubCardItem
 import com.example.github_trending.presentation.ui.component.TopBarView
 import com.example.github_trending.presentation.ui.shimmer.AnimatedShimmer
@@ -37,37 +42,46 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 val trendingList = trendingViewModel.trendingList.value
                 val isLoading = trendingViewModel.loading.value
+                val isError = trendingViewModel.isError.value
 
-                Column( modifier = Modifier.fillMaxSize()) {
+                Column(modifier = Modifier.fillMaxSize()) {
                     TopBarView()
 
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colors.background
-                    ) {
+                    if (isError) {
+                        ErrorView {
+                            Log.d("xxx" , "click")
 
-                        Box(
-                            modifier = Modifier.fillMaxSize()
-
+                            trendingViewModel.getTrendingGithubList()
+                        }
+                    } else {
+                        Surface(
+                            modifier = Modifier.fillMaxSize(),
+                            color = MaterialTheme.colors.background
                         ) {
 
-                            if (isLoading)
-                                Column {
-                                    repeat(8) {
-                                        AnimatedShimmer()
+                            Box(
+                                modifier = Modifier.fillMaxSize()
+
+                            ) {
+
+                                if (isLoading)
+                                    Column {
+                                        repeat(8) {
+                                            AnimatedShimmer()
+                                        }
+                                    }
+
+                                LazyColumn {
+                                    itemsIndexed(items = trendingList) { index, item ->
+                                        GithubCardItem(data = item)
                                     }
                                 }
 
-                            LazyColumn {
-                                itemsIndexed(items = trendingList) { index, item ->
-                                    GithubCardItem(data = item)
-                                }
+
                             }
-
-
                         }
-                    }
 
+                    }
                 }
             }
         }

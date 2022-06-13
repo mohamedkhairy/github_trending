@@ -1,5 +1,6 @@
 package com.example.github_trending.presentation.trendingUI
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -13,46 +14,45 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TrendingViewModel@Inject constructor (private val trendingUseCase: TrendingUseCase): ViewModel() {
+class TrendingViewModel @Inject constructor(private val trendingUseCase: TrendingUseCase) :
+    ViewModel() {
 
     val trendingList: MutableState<List<TrendingDomainModel>> = mutableStateOf(ArrayList())
     val loading: MutableState<Boolean> = mutableStateOf(false)
+    val isError: MutableState<Boolean> = mutableStateOf(false)
 
     init {
         getTrendingGithubList()
     }
 
-    fun getTrendingGithubList(){
+    fun getTrendingGithubList() {
         viewModelScope.launch(Dispatchers.Main) {
             trendingUseCase.invoke().collect {
-                when(it){
+                when (it) {
                     is Resource.Loading -> {
                         loading.value = true
+                        isError.value = false
                     }
                     is Resource.Success -> {
                         loading.value = false
-                        it.data?.let{list -> trendingList.value = list}
+                        isError.value = false
+                        it.data?.let { list -> trendingList.value = list }
                     }
                     is Resource.Error -> {
-                        it.data?.let{list -> trendingList.value = list}
                         loading.value = false
+
+                        if (!it.data.isNullOrEmpty()) {
+                            trendingList.value = it.data
+                            isError.value = false
+                        } else
+                            isError.value = true
+
+
                     }
                 }
             }
         }
     }
 
-//    fun onMenuSelect(index: Int){
-//        when(index){
-//            0 ->{
-//                val list = restaurantList.value.sortedBy { it.distance }
-//                restaurantList.value = list
-//            }
-//            1 ->{
-//                val list = restaurantList.value.sortedBy { it.rating }
-//                restaurantList.value = list
-//            }
-//        }
-//    }
 
 }

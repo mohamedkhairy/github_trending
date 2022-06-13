@@ -1,7 +1,5 @@
 package com.example.github_trending.data.repository
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
 import com.example.github_trending.data.source.local.GithubTrendingDao
 import com.example.github_trending.data.source.mapper.TrendingToDomainMapper
 import com.example.github_trending.data.source.mapper.TrendingToEntityMapper
@@ -10,6 +8,11 @@ import com.example.github_trending.data.utils.networkBoundResource
 import com.example.github_trending.domain.core.Resource
 import com.example.github_trending.domain.entity.TrendingDomainModel
 import com.example.github_trending.domain.repository.TrendingRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class TrendingRepositoryImp @Inject constructor(val trendingGithubService: TrendingGithubService,
@@ -25,7 +28,7 @@ class TrendingRepositoryImp @Inject constructor(val trendingGithubService: Trend
                 domainMapper.toDomainList(savedData)
             }
         },
-        fetch = {
+        fetchFromApi = {
             val response = trendingGithubService.callTrendingGithub()
             entityMapper.toEntityList(response)
         },

@@ -5,7 +5,7 @@ import com.example.github_trending.domain.core.Resource
 
 inline fun <ResultType, RequestType> networkBoundResource(
     crossinline query: () -> Flow<ResultType>,
-    crossinline fetch: suspend () -> RequestType,
+    crossinline fetchFromApi: suspend () -> RequestType,
     crossinline saveFetchResult: suspend (RequestType) -> Unit,
     crossinline shouldFetch: (ResultType?) -> Boolean = { true }
 ) = flow {
@@ -15,7 +15,7 @@ inline fun <ResultType, RequestType> networkBoundResource(
 //        emit(Resource.Loading(data))
 
         try {
-            val fetch = fetch()
+            val fetch = fetchFromApi()
             saveFetchResult(fetch)
             query().map { Resource.Success(it) }
         } catch (throwable: Throwable) {
