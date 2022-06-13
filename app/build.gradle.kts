@@ -79,13 +79,10 @@ dependencies {
     implementation(AndroidX.lifecycleVmKtx)
     implementation(AndroidX.livedataKtx)
     implementation(AndroidX.fragmentKtx)
-//    implementation(AndroidX.swiperefreshlayout)
 
     implementation(Google.material)
     implementation(Hilt.android)
-//    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-//    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.1")
-//    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
+
     kapt(Hilt.compiler)
 
 
@@ -110,11 +107,9 @@ dependencies {
     implementation(Ktor.ktorJson)
     implementation(Ktor.logging)
 
-    testImplementation("junit:junit:4.12")
-    androidTestImplementation("androidx.test:runner:1.1.2-alpha01")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.1.2-alpha01")
-
-
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 
 
 }

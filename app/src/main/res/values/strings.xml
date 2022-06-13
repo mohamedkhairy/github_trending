@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">github_trending</string>
+    <string name="circle_image_desc" >github image</string>
+
 </resources>
